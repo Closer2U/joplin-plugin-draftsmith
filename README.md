@@ -8,6 +8,8 @@ It helps turn an unfinished first draft into a manageable revision queue by high
 
 ## Screenshots
 
+-[ ] Todo: make screenshots
+
 ![DraftSmith panel](_screenshot/draftsmith-panel.png)
 
 ![Editor highlights](_screenshot/editor-highlights.png)
