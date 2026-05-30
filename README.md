@@ -8,7 +8,7 @@ It helps turn an unfinished first draft into a manageable revision queue by high
 
 ## Screenshots
 
--[ ] Todo: make screenshots
+- [ ] Todo: make screenshots
 
 ![DraftSmith panel](_screenshot/draftsmith-panel.png)
 
@@ -22,8 +22,8 @@ It helps turn an unfinished first draft into a manageable revision queue by high
 
 DraftSmith implements a Joplin-friendly version of the editing workflow described in these two companion documents:
 
-- [Ugly Draft → Polished Story: Editing System](../ugly-draft-to-polished-story-editing-system.md)
-- [Joplin Ugly Draft Workflow and Plugin Plan](../joplin-ugly-draft-workflow-and-plugin-plan.md)
+- [Ugly Draft → Polished Story: Editing System](ugly-draft-to-polished-story-editing-system.md)
+- [Joplin Ugly Draft Workflow and Plugin Plan](joplin-ugly-draft-workflow-and-plugin-plan.md)
 
 The core idea: do not try to make a chaotic draft beautiful immediately. First make it tagged, legible, functional, alive, and only then polished.
 
