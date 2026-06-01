@@ -62,10 +62,10 @@ function safeStyle(pattern: HighlightPattern): string {
 	const background = safeCssColor(pattern.background, '#fff0b3');
 	const foreground = safeCssColor(pattern.foreground, '#000000');
 	return [
-		`background-color: ${background}`,
-		`color: ${foreground}`,
-		'text-decoration: none',
-		'text-decoration-line: none',
+		`background-color: ${background} !important`,
+		`color: ${foreground} !important`,
+		'text-decoration: none !important',
+		'text-decoration-line: none !important',
 		'border-radius: 3px',
 		'padding: 0 1px',
 		'box-shadow: inset 0 0 0 1px rgba(0,0,0,.10)',
@@ -150,10 +150,17 @@ const decorationsField = StateField.define<DecorationSet>({
 
 const highlighterTheme = EditorView.baseTheme({
 	'.draftsmith-highlight': {
+		color: 'inherit !important',
 		textDecoration: 'none !important',
 		textDecorationLine: 'none !important',
 	},
 	'.draftsmith-highlight *': {
+		color: 'inherit !important',
+		textDecoration: 'none !important',
+		textDecorationLine: 'none !important',
+	},
+	'.cm-line .draftsmith-highlight.cm-link, .cm-line .draftsmith-highlight .cm-link': {
+		color: 'inherit !important',
 		textDecoration: 'none !important',
 		textDecorationLine: 'none !important',
 	},

@@ -211,6 +211,10 @@ publish/com.arena.draftSmith.jpl
 
 ## Short changelog
 
+### 0.2.1
+
+- Strengthened editor CSS so highlighted bracket tags override Joplin link-token text color as well as underline styling.
+
 ### 0.2.0
 
 - Renamed plugin from `Ugly Draft Highlighter` to `DraftSmith`.
