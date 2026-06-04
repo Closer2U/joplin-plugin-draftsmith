@@ -63,9 +63,9 @@ Default issue tags:
 Triage markers share colors/counts with their aliases:
 
 ```markdown
-[S] or [+]    salvage: works, improve prose
-[R] or [·]    rewrite: idea needed, wording fails
-[C] or [-]    cut: likely unnecessary
+[S] or [+]    salvage: works, improve prose       | enhances the scene
+[R] or [·]    rewrite: idea needed, wording fails | does not contribute to the scene
+[C] or [-]    cut: likely unnecessary             | lowers the value of the scene
 [M] or [^]    move: belongs elsewhere
 ```
 
@@ -210,6 +210,10 @@ publish/com.arena.draftSmith.jpl
 ```
 
 ## Short changelog
+
+### 0.2.2
+
+- Moved panel button/checkbox handlers from inline JavaScript to an external panel script to fix non-interactive desktop panel controls.
 
 ### 0.2.1
 
