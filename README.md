@@ -8,11 +8,12 @@ It helps turn an unfinished first draft into a manageable revision queue by high
 
 ## Screenshots
 
+
+![Editor highlights](_screenshot/Screenshot_Editor-with-panel.png)
+
+
+
 - [ ] Todo: make screenshots
-
-![DraftSmith panel](_screenshot/draftsmith-panel.png)
-
-![Editor highlights](_screenshot/editor-highlights.png)
 
 ![Mobile plugin panel](_screenshot/mobile-plugin-panel.png)
 
@@ -29,7 +30,7 @@ The core idea: do not try to make a chaotic draft beautiful immediately. First m
 
 ## Current version
 
-`0.2.0`
+`0.2.4` [Get it here :palm_up_hand:](joplin-plugin-draftsmith/publish/com.arena.draftSmith.jpl)
 
 ## Installable plugin file
 
@@ -210,6 +211,15 @@ publish/com.arena.draftSmith.jpl
 ```
 
 ## Short changelog
+
+### 0.2.4
+
+- Made the DraftSmith panel vertically scrollable while hiding scrollbars, so expanded details sections remain usable on small screens.
+
+### 0.2.3
+
+- Updated vulnerable development/build dependencies: `copy-webpack-plugin` and `tar`.
+- `npm audit` now reports 0 vulnerabilities.
 
 ### 0.2.2
 

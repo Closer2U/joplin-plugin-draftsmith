@@ -377,7 +377,7 @@ function renderPanel(config: PluginConfig, counts: Counts, noteTitle: string): s
 		const invalid = count === -1;
 		return `
 			<tr>
-				<td><input type="checkbox" ${pattern.enabled ? 'checked' : ''} onchange="togglePattern('${attrEncode(pattern.id)}', this.checked)" title="Toggle editor highlight" /></td>
+				<td><input type="checkbox" ${pattern.enabled ? 'checked' : ''} class="tag-toggle" data-id="${attrEncode(pattern.id)}" title="Toggle editor highlight" /></td>
 				<td><span class="swatch" style="background:${escapeHtml(pattern.background)};color:${escapeHtml(pattern.foreground)}">${escapeHtml(pattern.label)}</span><div class="desc">${escapeHtml(pattern.description || 'custom bracket tag')}</div></td>
 				<td class="count ${invalid ? 'bad' : ''}">${invalid ? 'regex error' : escapeHtml(count ?? 0)}</td>
 			</tr>`;
@@ -389,7 +389,9 @@ function renderPanel(config: PluginConfig, counts: Counts, noteTitle: string): s
 <meta charset="utf-8" />
 <style>
 	:root { color-scheme: light dark; }
-	body { font-family: var(--joplin-font-family, system-ui, sans-serif); font-size: 13px; color: var(--joplin-color); background: var(--joplin-background-color); padding: 10px; }
+	html { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+	body { box-sizing: border-box; height: 100%; margin: 0; padding: 10px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; -ms-overflow-style: none; font-family: var(--joplin-font-family, system-ui, sans-serif); font-size: 13px; color: var(--joplin-color); background: var(--joplin-background-color); }
+	body::-webkit-scrollbar { width: 0; height: 0; display: none; }
 	h1 { font-size: 16px; margin: 0 0 8px; }
 	h2 { font-size: 13px; margin: 14px 0 6px; }
 	details { border: 1px solid var(--joplin-divider-color, #9995); border-radius: 6px; padding: 6px 8px; margin: 10px 0; }
@@ -410,6 +412,7 @@ function renderPanel(config: PluginConfig, counts: Counts, noteTitle: string): s
 	input[type="text"] { width: 7.5rem; max-width: 50%; padding: 4px; }
 	.small { font-size: 11px; opacity: .75; line-height: 1.35; }
 	.controls { margin: 8px 0; }
+	.small { padding-bottom: 28px; }
 </style>
 </head>
 <body>
@@ -421,14 +424,14 @@ function renderPanel(config: PluginConfig, counts: Counts, noteTitle: string): s
 		<div class="card"><div class="big">${totalMarkers}</div><div>triage markers</div></div>
 	</div>
 	<div class="controls">
-		<button onclick="applyHighlights()">Apply highlights</button>
-		<button onclick="refresh()">Recalculate counts</button>
-		<button onclick="saveSyncNote()">Save sync note</button>
-		<button onclick="loadSyncNote()">Load sync note</button>
-		<button onclick="setOnlyIssues()">Issue tags only</button>
-		<button onclick="setOnlyGaps()">Only GAP</button>
-		<button onclick="enableAll()">Enable all</button>
-		<button onclick="disableAll()">Disable all</button>
+		<button data-action="apply">Apply highlights</button>
+		<button data-action="refresh">Recalculate counts</button>
+		<button data-action="saveSyncNote">Save sync note</button>
+		<button data-action="loadSyncNote">Load sync note</button>
+		<button data-action="issues">Issue tags only</button>
+		<button data-action="onlyGaps">Only GAP</button>
+		<button data-action="enableAll">Enable all</button>
+		<button data-action="disableAll">Disable all</button>
 	</div>
 	<details>
 		<summary>Highlight toggles & counts</summary>
@@ -441,28 +444,10 @@ function renderPanel(config: PluginConfig, counts: Counts, noteTitle: string): s
 		<summary>Add bracket tag</summary>
 		<div>
 			<input id="newTag" type="text" placeholder="TODO" />
-			<button onclick="addTag()">Add [TAG:...]</button>
+			<button data-action="addTag">Add [TAG:...]</button>
 		</div>
 	</details>
 	<p class="small">Panel checkboxes control which tags are highlighted. Colors are edited in plugin settings. Save/load the sync note to move settings between desktop and mobile through normal Joplin sync.</p>
-<script>
-	function post(message) { return webviewApi.postMessage(message); }
-	function decodeId(id) { try { return decodeURIComponent(id); } catch (e) { return id; } }
-	function togglePattern(id, enabled) { post({ type: 'togglePattern', id: decodeId(id), enabled }); }
-	function refresh() { post({ type: 'refresh' }); }
-	function applyHighlights() { post({ type: 'apply' }); }
-	function saveSyncNote() { post({ type: 'saveSyncNote' }); }
-	function loadSyncNote() { post({ type: 'loadSyncNote' }); }
-	function enableAll() { post({ type: 'bulkEnable', mode: 'all' }); }
-	function disableAll() { post({ type: 'bulkEnable', mode: 'none' }); }
-	function setOnlyGaps() { post({ type: 'bulkEnable', mode: 'only', ids: ['GAP'] }); }
-	function setOnlyIssues() { post({ type: 'bulkEnable', mode: 'issues' }); }
-	function addTag() {
-		const input = document.getElementById('newTag');
-		post({ type: 'addTag', tag: input.value });
-		input.value = '';
-	}
-</script>
 </body>
 </html>`;
 }
@@ -574,6 +559,7 @@ async function handlePanelMessage(message: any) {
 
 async function registerPanel() {
 	panelHandle = await joplin.views.panels.create('draftSmithPanel');
+	await joplin.views.panels.addScript(panelHandle, './panel.js');
 	await joplin.views.panels.onMessage(panelHandle, handlePanelMessage);
 	const showPanel = await joplin.settings.value(PANEL_VISIBLE_SETTING);
 	await joplin.views.panels.show(panelHandle, !!showPanel);

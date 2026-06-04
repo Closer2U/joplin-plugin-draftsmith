@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-draftsmith",
-  "version": "0.2.1",
+  "version": "0.2.4",
   "description": "Configurable revision tag highlighting and unresolved issue counts for Joplin Markdown fiction drafts.",
   "scripts": {
     "dist": "webpack --env joplin-plugin-config=buildMain && webpack --env joplin-plugin-config=buildExtraScripts && webpack --env joplin-plugin-config=createArchive",
@@ -23,10 +23,10 @@
     "@codemirror/view": "^6.36.8",
     "@types/node": "^18.7.13",
     "chalk": "^4.1.0",
-    "copy-webpack-plugin": "^11.0.0",
+    "copy-webpack-plugin": "^14.0.0",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3",
-    "tar": "^6.1.11",
+    "tar": "^7.5.16",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.2",
     "webpack": "^5.74.0",
