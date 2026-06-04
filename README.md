@@ -9,7 +9,7 @@ It helps turn an unfinished first draft into a manageable revision queue by high
 ## Screenshots
 
 
-![Editor highlights](_screenshot/Screenshot_Editor-with-panel.png)
+![Editor highlights](_screenshots/Screenshot_Editor-with-panel.png)
 
 
 
