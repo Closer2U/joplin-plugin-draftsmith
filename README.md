@@ -4,8 +4,6 @@ DraftSmith is a Joplin plugin for writers who revise messy Markdown drafts with 
 
 It helps turn an unfinished first draft into a manageable revision queue by highlighting tags in the editor, counting unresolved issues, and giving you a compact dashboard for pass-based editing.
 
-> **AI development disclaimer:** This plugin was developed with substantial help from AI. The workflow, plugin architecture, code iterations, README structure, and debugging changes were all massively assisted by an AI coding agent. Please review, test, and audit before relying on it for important work.
-
 ## Screenshots
 
 
@@ -288,3 +286,5 @@ publish/com.arena.draftSmith.jpl
 - Settings layout is limited by Joplin's settings API; multi-control rows are not currently implemented.
 - The plugin was built and iterated in an AI-assisted environment and should be tested carefully in your own Joplin setup.
 
+
+> **AI development disclaimer:** This plugin was developed with substantial help from AI. The workflow, plugin architecture, code iterations, README structure, and debugging changes were all massively assisted by an AI coding agent. Please review, test, and audit before relying on it for important work.
